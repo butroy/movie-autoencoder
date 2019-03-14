@@ -42,9 +42,9 @@ class DAE:
         '''
         
         with tf.name_scope('inference'):
-             a1=tf.nn.sigmoid(tf.nn.bias_add(tf.matmul(x, self.W_1),self.b1))
-             a2=tf.nn.sigmoid(tf.nn.bias_add(tf.matmul(a1, self.W_2),self.b2))
-             a3=tf.nn.sigmoid(tf.nn.bias_add(tf.matmul(a2, self.W_3),self.b3))   
+             a1=tf.nn.relu(tf.nn.bias_add(tf.matmul(x, self.W_1),self.b1))
+             a2=tf.nn.relu(tf.nn.bias_add(tf.matmul(a1, self.W_2),self.b2))
+             a3=tf.nn.relu(tf.nn.bias_add(tf.matmul(a2, self.W_3),self.b3))   
              a4=tf.matmul(a3, self.W_4) 
         return a4
     
@@ -112,10 +112,3 @@ class DAE:
         RMSE_loss=tf.sqrt(MSE_loss)
             
         return outputs, RMSE_loss
-    
-   
-    
-    
-    
-    
-    

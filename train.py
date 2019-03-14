@@ -3,15 +3,23 @@ from data.dataset import _get_training_data, _get_test_data
 from DAE import DAE
 import numpy as np
 
+#tf.app.flags.DEFINE_string('tf_records_train_path', 
+#                           '/Users/yifengbu/Desktop/autoencoder/train/',
+#                           'Path of the training data.')
+
 tf.app.flags.DEFINE_string('tf_records_train_path', 
-                           '/Users/yifengbu/Desktop/autoencoder/train/',
+                           'E://movie-autoencoder//train//',
                            'Path of the training data.')
 
+#tf.app.flags.DEFINE_string('tf_records_test_path', 
+#                           '/Users/yifengbu/Desktop/autoencoder/test/',
+#                           'Path of the test data.')
+
 tf.app.flags.DEFINE_string('tf_records_test_path', 
-                           '/Users/yifengbu/Desktop/autoencoder/test/',
+                           'E://movie-autoencoder//train//',
                            'Path of the test data.')
 
-tf.app.flags.DEFINE_integer('num_epoch', 3,
+tf.app.flags.DEFINE_integer('num_epoch', 50,
                             'Number of training epochs.')
 
 tf.app.flags.DEFINE_integer('batch_size', 16,
@@ -42,7 +50,8 @@ def main(_):
     '''Building the graph, opening of a session and starting the training od the neural network.'''
     
     num_batches=int(FLAGS.num_samples/FLAGS.batch_size)
-    
+    train_loss_summary = []
+    test_loss_summary = []
     with tf.Graph().as_default():
 
         train_data, train_data_infer=_get_training_data(FLAGS)
@@ -84,6 +93,8 @@ def main(_):
                     test_loss+=loss_
                     
                 print('epoch_nr: %i, train_loss: %.3f, test_loss: %.3f'%(epoch,(train_loss/num_batches),(test_loss/FLAGS.num_samples)))
+                train_loss_summary.append(train_loss/num_batches)
+                test_loss_summary.append(test_loss/FLAGS.num_samples)
                 train_loss=0
                 test_loss=0
 
