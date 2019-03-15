@@ -6,7 +6,6 @@ In this project, I will explore what autoencoder is and how it works and then ap
 An autoencoder is a deep learning neural network architecture that achieves a recommendation system in the area of collaborative filtering. Let's first explore how autoencoder is structured. 
 
 ## Deep autoencoder
-****
 **Autoencoder:**
 Architecturally, the form of an Autoencoder is a feedforward neural network having an input layer, one hidden layer and an output layer. Unlike conventional neural network structure, the output layer has the same number of neurons as the input layer in autoencoder for the purpose of reconstructing it's own inputs. This makes an autoencoder a form of unsupervised learning, which means we only need a set of input data instead of input-output pairs
 
@@ -119,7 +118,7 @@ Obviously, the model overfits the training dataset and even the train loss is no
 
 * More hidden layers
 
-In Mike's autoencoder model, it has 3 hidden layers with 128 perceptron in each. And if I choose batch_size of 8 and learning rate of 0.001, the training result is: 
+In Mike's autoencoder model, it has 3 hidden layers with 128 perceptron in each. And if I choose batch_size of 8, learning rate of 0.001 and elu as the activation function, the training result is: 
 
 <p align="center">
   <img width="400" height="300" src="https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_original_layer.png">
@@ -130,7 +129,7 @@ I add 3 more hidden layers and the results are
 
 128-128-128-128-128-128-3952            |  128-64-32-64-128-128-3952  
 :-------------------------:|:-------------------------:
-![](https://github.com/butroy/movie-autoencoder/blob/master/plots/p2_128_128_128_layer.png)  |  ![](https://github.com/butroy/movie-autoencoder/blob/master/plots/p2_128_64_32_layer.png)
+![](https://github.com/butroy/movie-autoencoder/blob/master/plots/P2_128_128_128_elu.png)  |  ![](https://github.com/butroy/movie-autoencoder/blob/master/plots/P2_64_32_64_elu.png)
 
 
 
