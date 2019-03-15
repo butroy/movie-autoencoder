@@ -1,11 +1,11 @@
-## Deep Autoencoder For Collaborative Filtering
+# Deep Autoencoder For Collaborative Filtering
 
 In this project, I will explore what autoencoder is and how it works and then apply it in python scripts. I will also validate various properties mentioned in Oleksii and Boris' [paper](https://arxiv.org/pdf/1708.01715.pdf). 
 
-### Introduction
+## Introduction
 An autoencoder is a deep learning neural network architecture that achieves a recommendation system in the area of collaborative filtering. Let's first explore how autoencoder is structured. 
 
-### Deep autoencoder
+## Deep autoencoder
 ****
 **Autoencoder:**
 Architecturally, the for of an Autoencoder is a feedforward neural network having an input layer, one hidden layer and an output layer. Unlike conventional neural network structure, the output layer has the same number of neurons as the input layer in autoencoder for the purpose of reconstructing it's own inputs. This makes an autoencoder a form of unsupervised learning, which means we only need a set of input data instead of input-output pairs
@@ -21,7 +21,7 @@ A deep autoencoder will have more hidden layers. The additional hidden layers en
 
 The training process of an autoencoder is pretty much similar with conventional multi-layer perceptron training. We could randomly choose num of hidden layers and size of them, optimizer, activation functions and various hyperparameters. The detailed optimization will be shown in the following part.
 
-### Implementation
+## Implementation
 In this project, I will apply a deep autoencoder that learns to predict the rating auers would give a movie. I will use the famouse [MovieLens dataset](https://grouplens.org/datasets/movielens/). MovieLens is web based recommender system and online community that recommends for users to watch.
 
 For simplicity, I will use *ml-1m.zip* that contains 1,000,209 ratings of 3952 movies made by 5953 users. The *rating.dat* file contains 1,000,209 lines having the format of: user_id::movie_id::rating:time_stamp.
@@ -32,8 +32,8 @@ I first split the *rating.dat* file into training set and test set with a 80/20 
 
 I use an online [source](https://github.com/mikelaidata/autoencoder) as my base structure. My major work focuses on tuning hyperparameters and validate Oleksii and Boris' [paper](https://arxiv.org/pdf/1708.01715.pdf)
 
-### Train and Optimize 
-**Base Model Structure:**
+## Train and Optimize 
+### Base Model Structure:
 Mike's model has 3 hidden layers and each layer has 128 perceptrons. The default hyperparameters as following:
 
 | Hyperparameters| Value         | Explanation  |
@@ -50,25 +50,25 @@ The training result is
   <img width="400" height="300" src="https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_original_loss.png">
 </p>
 
-**HyperParameter tuning**
+### HyperParameter tuning
 
-* batch_size
+* **batch_size**
 
-Train loss           |  Test loss
-:-------------------------:|:-------------------------:
-![](https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_batch_size_train.png)  |  ![](https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_batch_size_test.png)
+
+![](https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_batch_size_train.png) ![](https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_batch_size_test.png)
 
 we could see from the above images that the most optimized batch size is 8.
 
-* learning_rate
+* **learning_rate**
 
-Train loss           |  Test loss
-:-------------------------:|:-------------------------:
+         				
+:-------------------------|-------------------------:
 ![](https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_learning_rate_training.png)  |  ![](https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_learning_rate_testing.png)
 
 As our intuition, if we set the learning rate too big, e.g. 0.01, it's hard for model to get approximate to the best loss, and in the contrary, if we set the the learning rate too small, e.g. 1e-6, the step is too small so that the model will be hard to converge as well. Thus, the learning rate I will choose in the following work is 0.001
 
-* activation function
+* **activation function**
+
 I chose 5 activation functions to compare: Sigmoid, relu, tanh, elu, selu, and according to the paper, elu and selu perform better
 
 Train loss           |  Test loss
