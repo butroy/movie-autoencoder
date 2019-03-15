@@ -8,7 +8,7 @@ An autoencoder is a deep learning neural network architecture that achieves a re
 ## Deep autoencoder
 ****
 **Autoencoder:**
-Architecturally, the for of an Autoencoder is a feedforward neural network having an input layer, one hidden layer and an output layer. Unlike conventional neural network structure, the output layer has the same number of neurons as the input layer in autoencoder for the purpose of reconstructing it's own inputs. This makes an autoencoder a form of unsupervised learning, which means we only need a set of input data instead of input-output pairs
+Architecturally, the form of an Autoencoder is a feedforward neural network having an input layer, one hidden layer and an output layer. Unlike conventional neural network structure, the output layer has the same number of neurons as the input layer in autoencoder for the purpose of reconstructing it's own inputs. This makes an autoencoder a form of unsupervised learning, which means we only need a set of input data instead of input-output pairs
 
 <p align="center">
   <img width="300" height="300" src="https://github.com/butroy/movie-autoencoder/blob/master/plots/Fig1.png">
@@ -50,7 +50,7 @@ The training result is
   <img width="400" height="300" src="https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_original_loss.png">
 </p>
 
-
+Training the base model in 50 epochs give train loss of 0.824 and test loss 0.795. This is a not bad result and let's see if we can optimize it. 
 
 ### HyperParameter tuning
 
@@ -85,12 +85,12 @@ As we see, elu and selu perform better then other activation functions and this 
 
 * **wider network**
 
-I also explored would a wider network give a better result?
-I chose a 3 layers network with hidden neurons of 128, 256, 512 and 1024, and the results are
+I also explored a hypothesis that would a wider network give a better result ?
+I chose the base model with hidden neurons of 128, 256, 512 and 1024 in all layers, and the results are
 
 <p align="center">
   <img src ="https://github.com/butroy/movie-autoencoder/blob/master/plots/hiddenSize_train.png" width="300" />
-  <img src="hhttps://github.com/butroy/movie-autoencoder/blob/master/plots/hiddenSize_test.png" width="300" /> 
+  <img src="https://github.com/butroy/movie-autoencoder/blob/master/plots/hiddenSize_test.png" width="300" /> 
  </p>
 
 From the result, we could conclude that with more neurons in each layer doesn't necessarily increase the performance. In fact, wider network can make the model perform worse. The neuron sizes of 128 and 256 don't have big difference. 
@@ -104,6 +104,16 @@ L2 regularization is a loss term added in loss function to avoid the model overf
  </p>
  
  Compare with the base model which give train loss of ---- and test loss --- in 50 epochs, adding l2 regularization term in the loss function doesn't optimize the model. I think this is because our model never overfit the training set and adding regularization will make the neurons away from the correct direction when computing the gradient.
+
+* **Batch Normalization**
+
+Let's see if we add batch normalization after each layer could optimize
+
+<p align="center">
+  <img src ="https://github.com/butroy/movie-autoencoder/blob/master/plots/p4_BN.png" width="300" />
+ </p>
+ 
+Obviously, the model overfits the training dataset and even the train loss is not as good as our base model. 
 
 
 
