@@ -47,7 +47,7 @@ The model chooses MSE as the loss function and Adam as the optimizer.
 
 The training result is
 <p align="center">
-  <img width="300" height="300" src="https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_original_loss.png">
+  <img width="400" height="300" src="https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_original_loss.png">
 </p>
 
 **HyperParameter tuning**
@@ -58,6 +58,38 @@ Train loss           |  Test loss
 :-------------------------:|:-------------------------:
 ![](https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_batch_size_train.png)  |  ![](https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_batch_size_test.png)
 
+we could see from the above images that the most optimized batch size is 8.
+
+* learning_rate
+
+Train loss           |  Test loss
+:-------------------------:|:-------------------------:
+![](https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_learning_rate_training.png)  |  ![](https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_learning_rate_testing.png)
+
+As our intuition, if we set the learning rate too big, e.g. 0.01, it's hard for model to get approximate to the best loss, and in the contrary, if we set the the learning rate too small, e.g. 1e-6, the step is too small so that the model will be hard to converge as well. Thus, the learning rate I will choose in the following work is 0.001
+
+* activation function
+I chose 5 activation functions to compare: Sigmoid, relu, tanh, elu, selu, and according to the paper, elu and selu perform better
+
+Train loss           |  Test loss
+:-------------------------:|:-------------------------:
+![](https://github.com/butroy/movie-autoencoder/blob/master/plots/act_func_train.png)  |  ![](https://github.com/butroy/movie-autoencoder/blob/master/plots/act_func_test.png)
+
+
+* More hidden layers
+
+In Mike's autoencoder model, it has 3 hidden layers with 128 perceptron in each. And if I choose batch_size of 8 and learning rate of 0.001, the training result is: 
+
+<p align="center">
+  <img width="400" height="300" src="https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_original_layer.png">
+</p>
+
+I add 3 more hidden layers and the results are
+
+
+128-128-128-128-128-128-3952            |  128-64-32-64-128-128-3952  
+:-------------------------:|:-------------------------:
+![](https://github.com/butroy/movie-autoencoder/blob/master/plots/p2_128_128_128_layer.png)  |  ![](https://github.com/butroy/movie-autoencoder/blob/master/plots/p2_128_64_32_layer.png)
 
 
 
