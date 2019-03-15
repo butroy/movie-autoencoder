@@ -50,7 +50,7 @@ The training result is
   <img width="400" height="300" src="https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_original_loss.png">
 </p>
 
-Training the base model in 50 epochs give train loss of 0.824 and test loss 0.795. This is a not bad result and let's see if we can optimize it. 
+Training the base model in 50 epochs give train loss of 0.819 and test loss 0.790. This is a not bad result and let's see if we can optimize it. 
 
 ### HyperParameter tuning
 
