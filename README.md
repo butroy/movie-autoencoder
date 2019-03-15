@@ -50,7 +50,7 @@ The training result is
 </p>
 
 Training the base model in 50 epochs give train loss of 0.819 and test loss 0.790. This is a not bad result and let's see if we could optimize it. 
-400
+
 ### HyperParameter tuning
 
 * **batch_size**
@@ -78,7 +78,7 @@ I chose 5 activation functions to compare: Sigmoid, relu, tanh, elu, selu.
   <img src="https://github.com/butroy/movie-autoencoder/blob/master/plots/act_func_test.png" width="400" /> 
  </p>
  
-As we see, elu and selu perform better then other activation functions and this result consistent with the paper's
+As we see, elu and selu perform better then other activation functions and this result consistent with the paper's result.
 
 * **wider network**
 
@@ -100,7 +100,7 @@ L2 regularization is a loss term added in loss function to avoid the model overf
   <img src ="https://github.com/butroy/movie-autoencoder/blob/master/plots/p4_l2reg.png" width="400" />
  </p>
  
- Compare with the base model which give train loss of ---- and test loss --- in 50 epochs, adding l2 regularization term in the loss function doesn't optimize the model. I think this is because our model never overfit the training set and adding regularization will make the neurons away from the correct direction when computing the gradient.
+ Compare with the base model which give train loss of 0.819 and test loss 0.790 in 50 epochs, adding l2 regularization term in the loss function doesn't optimize the model. I think this is because our model never overfit the training set and adding regularization will make the neurons away from the correct direction when computing the gradient.
 
 * **Batch Normalization**
 
@@ -114,16 +114,15 @@ Obviously, the model overfits the training dataset and even the train loss is no
 
 
 
-* More hidden layers
+* **More hidden layers**
 
 In Mike's autoencoder model, it has 3 hidden layers with 128 perceptron in each. And if I choose batch_size of 8, learning rate of 0.001 and elu as the activation function, the training result is: 
 
 <p align="center">
-  <img width="400" height="400" src="https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_original_layer.png">
+  <img width="400" height="300" src="https://github.com/butroy/movie-autoencoder/blob/master/plots/original_layer_elu.png">
 </p>
 
-I add 3 more hidden layers and the results are
-
+I add 3 more hidden layers, one has 128 in each layer and the other has a 64-32-64 to see which one could beats our original model. 
 
 128-128-128-128-128-128-3952            |  128-64-32-64-128-128-3952  
 :-------------------------:|:-------------------------:
