@@ -5,7 +5,8 @@ from preprocess_data import _get_dataset
 
 #OUTPUT_DIR_TRAIN='C:/Users/Admin/Desktop/deep_learning_data/colaborative_filtering/TFRecords_normal_ratings/tf_records_1M/train'
 #OUTPUT_DIR_TEST='C:/Users/Admin/Desktop/deep_learning_data/colaborative_filtering/TFRecords_normal_ratings/tf_records_1M/test'
-
+OUTPUT_DIR_TRAIN = './tfrecord/train'
+OUTPUT_DIR_TEST = './tfrecord/test'
 
 def _add_to_tfrecord(data_sample,tfrecord_writer):
     
