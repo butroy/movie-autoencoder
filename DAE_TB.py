@@ -34,19 +34,47 @@ class DAE:
             self.b3=tf.get_variable(name='bias_3', shape=(self.arguments['num_h']), 
                                     initializer=self.bias_initializer)
         
-    def _inference(self, x):
+    def _inference(self, x,function):
         ''' Making one forward pass. Predicting the networks outputs.
         @param x: input ratings
         
         @return : networks predictions
         '''
-        
-        with tf.name_scope('inference'):
-             a1=tf.nn.sigmoid(tf.nn.bias_add(tf.matmul(x, self.W_1),self.b1))
-             a2=tf.nn.sigmoid(tf.nn.bias_add(tf.matmul(a1, self.W_2),self.b2))
-             a3=tf.nn.sigmoid(tf.nn.bias_add(tf.matmul(a2, self.W_3),self.b3))   
-             a4=tf.matmul(a3, self.W_4) 
-        return a4
+        if function == 'relu':
+            with tf.name_scope('inference'):
+                 a1=tf.nn.relu(tf.nn.bias_add(tf.matmul(x, self.W_1),self.b1))
+                 a2=tf.nn.relu(tf.nn.bias_add(tf.matmul(a1, self.W_2),self.b2))
+                 a3=tf.nn.relu(tf.nn.bias_add(tf.matmul(a2, self.W_3),self.b3))  
+                 a4=tf.matmul(a3, self.W_4) 
+            return a4
+        elif function == 'elu':
+            with tf.name_scope('inference'):
+                 a1=tf.nn.elu(tf.nn.bias_add(tf.matmul(x, self.W_1),self.b1))
+                 a2=tf.nn.elu(tf.nn.bias_add(tf.matmul(a1, self.W_2),self.b2))
+                 a3=tf.nn.elu(tf.nn.bias_add(tf.matmul(a2, self.W_3),self.b3))  
+                 a4=tf.matmul(a3, self.W_4) 
+            return a4
+        elif function == 'sigmoid':
+             with tf.name_scope('inference'):
+                 a1=tf.nn.sigmoid(tf.nn.bias_add(tf.matmul(x, self.W_1),self.b1))
+                 a2=tf.nn.sigmoid(tf.nn.bias_add(tf.matmul(a1, self.W_2),self.b2))
+                 a3=tf.nn.sigmoid(tf.nn.bias_add(tf.matmul(a2, self.W_3),self.b3))  
+                 a4=tf.matmul(a3, self.W_4) 
+             return a4
+        elif function == 'tanh':
+             with tf.name_scope('inference'):
+                 a1=tf.nn.tanh(tf.nn.bias_add(tf.matmul(x, self.W_1),self.b1))
+                 a2=tf.nn.tanh(tf.nn.bias_add(tf.matmul(a1, self.W_2),self.b2))
+                 a3=tf.nn.tanh(tf.nn.bias_add(tf.matmul(a2, self.W_3),self.b3))  
+                 a4=tf.matmul(a3, self.W_4) 
+             return a4
+        elif function == 'selu':
+             with tf.name_scope('inference'):
+                 a1=tf.nn.selu(tf.nn.bias_add(tf.matmul(x, self.W_1),self.b1))
+                 a2=tf.nn.selu(tf.nn.bias_add(tf.matmul(a1, self.W_2),self.b2))
+                 a3=tf.nn.selu(tf.nn.bias_add(tf.matmul(a2, self.W_3),self.b3))  
+                 a4=tf.matmul(a3, self.W_4) 
+             return a4
     
     def _compute_loss(self, predictions, labels,num_labels):
         ''' Computing the Mean Squared Error loss between the input and output of the network.
@@ -65,7 +93,7 @@ class DAE:
     	  
         
 
-    def _optimizer(self, x):
+    def _optimizer(self, x,function):
         '''Optimization of the network parameter through stochastic gradient descent.
             
             @param x: input values for the stacked autoencoder.
@@ -74,7 +102,7 @@ class DAE:
             @return: ROOT!! mean squared error
         '''
         
-        outputs=self._inference(x)
+        outputs=self._inference(x,function)
         mask=tf.where(tf.equal(x,0.0), tf.zeros_like(x), x) # indices of 0 values in the training set
         num_train_labels=tf.cast(tf.count_nonzero(mask),dtype=tf.float32) # number of non zero values in the training set
         bool_mask=tf.cast(mask,dtype=tf.bool) # boolean mask
@@ -91,7 +119,7 @@ class DAE:
 
         return train_op, RMSE_loss
     
-    def _validation_loss(self, x_train, x_test):
+    def _validation_loss(self, x_train, x_test,function):
         
         ''' Computing the loss during the validation time.
     		
@@ -102,7 +130,7 @@ class DAE:
     	  @return root mean squared error loss between the predicted and actual ratings
     	  '''
         
-        outputs=self._inference(x_train) # use training sample to make prediction
+        outputs=self._inference(x_train,function) # use training sample to make prediction
         mask=tf.where(tf.equal(x_test,0.0), tf.zeros_like(x_test), x_test) # identify the zero values in the test ste
         num_test_labels=tf.cast(tf.count_nonzero(mask),dtype=tf.float32) # count the number of non zero values
         bool_mask=tf.cast(mask,dtype=tf.bool) 

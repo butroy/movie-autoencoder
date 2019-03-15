@@ -19,19 +19,19 @@ tf.app.flags.DEFINE_string('tf_records_test_path',
                            'E://movie-autoencoder//train//',
                            'Path of the test data.')
 
-tf.app.flags.DEFINE_integer('num_epoch', 50,
+tf.app.flags.DEFINE_integer('num_epoch', 100,
                             'Number of training epochs.')
 
-tf.app.flags.DEFINE_integer('batch_size', 16,
+tf.app.flags.DEFINE_integer('batch_size', 8,
                             'Size of the training batch.')
 
-tf.app.flags.DEFINE_float('learning_rate',0.0005,
+tf.app.flags.DEFINE_float('learning_rate',0.001,
                           'Learning_Rate')
 
 tf.app.flags.DEFINE_boolean('l2_reg', False,
                             'L2 regularization.'
                             )
-tf.app.flags.DEFINE_float('lambda_',0.01,
+tf.app.flags.DEFINE_float('lambda_',0.001,
                           'Wight decay factor.')
 
 tf.app.flags.DEFINE_integer('num_v', 3952,

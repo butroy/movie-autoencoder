@@ -29,7 +29,6 @@ def _get_training_data(arguments):
 
 def _get_test_data(arguments):
     ''' Buildind the input pipeline for test data.'''
-    
     filenames=[arguments['tf_records_test_path']+f for f in os.listdir(arguments['tf_records_test_path'])]
     
     dataset = tf.data.TFRecordDataset(filenames)
