@@ -47,7 +47,7 @@ The model chooses MSE as the loss function and Adam as the optimizer.
 
 The training result is
 <p align="center">
-  <img width="400" height="300" src="https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_original_loss.png">
+  <img width="400" height="300" src="https://github.com/butroy/movie-autoencoder/blob/master/plots/base_model.png">
 </p>
 
 Training the base model in 50 epochs give train loss of 0.819 and test loss 0.790. This is a not bad result and let's see if we can optimize it. 
