@@ -1,6 +1,6 @@
 # Deep Autoencoder For Collaborative Filtering
 
-In this project, I will explore what autoencoder is and how it works and then apply it in python scripts. I will also validate various properties mentioned in Oleksii and Boris' [paper](https://arxiv.org/pdf/1708.01715.pdf). 
+In this project, I will explore what autoencoder is and how it works and then apply it in python scripts. I will also test several properties mentioned in Oleksii and Boris' [paper](https://arxiv.org/pdf/1708.01715.pdf). 
 
 ## Introduction
 An autoencoder is a deep learning neural network architecture that achieves a recommendation system in the area of collaborative filtering. Let's first explore how autoencoder is structured. 
@@ -42,7 +42,7 @@ I use an online [source](https://github.com/mikelaidata/autoencoder) as my base 
 | num of hidden neurons  | 128    | Number of neurons in each layer|
 | l2_regularization | False | l2_regularization switch|
 
-The model chooses MSE as the loss function and Adam as the optimizer.
+The model chooses MSE as the loss function and Adam as the optimizer. To estimate performance, I use RMSE loss score.
 
 The training result is
 <p align="center">
@@ -128,6 +128,24 @@ I add 3 more hidden layers, one has 128 in each layer and the other has a 64-32-
 :-------------------------:|:-------------------------:
 ![](https://github.com/butroy/movie-autoencoder/blob/master/plots/P2_128_128_128_elu.png)  |  ![](https://github.com/butroy/movie-autoencoder/blob/master/plots/P2_64_32_64_elu.png)
 
+The test loss of our original model could reach 0.584 and neither of the two structures which have more hidden layers could beat it. However, this result contradicts with the [paper](https://arxiv.org/pdf/1708.01715.pdf)'s result, which says that "there is a positive correlation between the number of layers and the evaluation accuracy." I think the reason for the contradiction is the paper is using the Netflix dataset and it is about 100 times larger than ours and thus it would need more parameters to build an efficient network. However, this is just my hypothesis and needs to be further verified. 
+
+## Conclusion
+<p align="center">
+  <img width="400" height="300" src="https://github.com/butroy/movie-autoencoder/blob/master/plots/conclusion.png">
+</p>
+In this project, I learnt to use autoencoder to predict user's rating on movies. I applied [Mike](https://github.com/mikelaidata/autoencoder)'s autoencoder and tuned hyperparameters by taking Oleksii and Boris' [paper](https://arxiv.org/pdf/1708.01715.pdf) as a reference. I test and concluded that with a batch size of 8, learning rate of 0.001, elu as the activation function, 128 neurons in each layear, not including l2 regularization and batch nomalization could give the best RMSE loss result with a train loss of 0.593 and a test loss of 0.488.
+
+My test based on Oleksii and Boris' [paper](https://arxiv.org/pdf/1708.01715.pdf) validates most of their hypothesis except for the impacts of a larger network. My result shows that adding more layers actually decreases performance while the paper thinks that the number of layers and the performance have a postive correlation. I guess the contradiction comes from the different sizes of our datasets: their dataset is about 100 times larger than mine. Intuitively, they will need more parameters to get an optimized result. However, this guess needs to be further verified. 
+
+### Reference
+
+https://github.com/mikelaidata
+
+https://arxiv.org/pdf/1708.01715.pdf
+
+https://towardsdatascience.com/deep-autoencoders-for-collaborative-filtering-6cf8d25bbf1d
+ 
 
 
 
