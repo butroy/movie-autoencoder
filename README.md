@@ -47,15 +47,18 @@ The model chooses MSE as the loss function and Adam as the optimizer.
 
 The training result is
 <p align="center">
-  <img width="400" height="300" src="https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_original_loss.png">
+  <img width="200" height="150" src="https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_original_loss.png">
 </p>
 
 ### HyperParameter tuning
 
 * **batch_size**
+<p align="center">
+  <img src ="https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_batch_size_train.png" width="200" />
+  <img src="/https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_batch_size_test.png" width="200" /> 
+ </p>
 
 
-![](https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_batch_size_train.png) ![](https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_batch_size_test.png)
 
 we could see from the above images that the most optimized batch size is 8.
 
