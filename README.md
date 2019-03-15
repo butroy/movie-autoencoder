@@ -63,10 +63,10 @@ The training result is
 we could see from the above images that the most optimized batch size is 8.
 
 * **learning_rate**
-
-         				
-:-------------------------|-------------------------:
-![](https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_learning_rate_training.png)  |  ![](https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_learning_rate_testing.png)
+<p align="center">
+  <img src ="https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_learning_rate_training.png" width="300" />
+  <img src="https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_learning_rate_testing.png" width="300" /> 
+ </p>
 
 As our intuition, if we set the learning rate too big, e.g. 0.01, it's hard for model to get approximate to the best loss, and in the contrary, if we set the the learning rate too small, e.g. 1e-6, the step is too small so that the model will be hard to converge as well. Thus, the learning rate I will choose in the following work is 0.001
 
@@ -74,10 +74,10 @@ As our intuition, if we set the learning rate too big, e.g. 0.01, it's hard for 
 
 I chose 5 activation functions to compare: Sigmoid, relu, tanh, elu, selu, and according to the paper, elu and selu perform better
 
-Train loss           |  Test loss
-:-------------------------:|:-------------------------:
-![](https://github.com/butroy/movie-autoencoder/blob/master/plots/act_func_train.png)  |  ![](https://github.com/butroy/movie-autoencoder/blob/master/plots/act_func_test.png)
-
+<p align="center">
+  <img src ="https://github.com/butroy/movie-autoencoder/blob/master/plots/act_func_train.png" width="300" />
+  <img src="https://github.com/butroy/movie-autoencoder/blob/master/plots/act_func_test.png" width="300" /> 
+ </p>
 
 * More hidden layers
 
