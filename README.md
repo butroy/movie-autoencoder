@@ -50,6 +50,8 @@ The training result is
   <img width="400" height="300" src="https://github.com/butroy/movie-autoencoder/blob/master/plots/p1_original_loss.png">
 </p>
 
+
+
 ### HyperParameter tuning
 
 * **batch_size**
@@ -72,12 +74,38 @@ As our intuition, if we set the learning rate too big, e.g. 0.01, it's hard for 
 
 * **activation function**
 
-I chose 5 activation functions to compare: Sigmoid, relu, tanh, elu, selu, and according to the paper, elu and selu perform better
+I chose 5 activation functions to compare: Sigmoid, relu, tanh, elu, selu.
 
 <p align="center">
   <img src ="https://github.com/butroy/movie-autoencoder/blob/master/plots/act_func_train.png" width="300" />
   <img src="https://github.com/butroy/movie-autoencoder/blob/master/plots/act_func_test.png" width="300" /> 
  </p>
+ 
+As we see, elu and selu perform better then other activation functions and this result consistent with the paper's
+
+* **wider network**
+
+I also explored would a wider network give a better result?
+I chose a 3 layers network with hidden neurons of 128, 256, 512 and 1024, and the results are
+
+<p align="center">
+  <img src ="https://github.com/butroy/movie-autoencoder/blob/master/plots/hiddenSize_train.png" width="300" />
+  <img src="hhttps://github.com/butroy/movie-autoencoder/blob/master/plots/hiddenSize_test.png" width="300" /> 
+ </p>
+
+From the result, we could conclude that with more neurons in each layer doesn't necessarily increase the performance. In fact, wider network can make the model perform worse. The neuron sizes of 128 and 256 don't have big difference. 
+
+* **l2 regularization**
+
+L2 regularization is a loss term added in loss function to avoid the model overfitting. Below is the result if we include the l2 regularization term.
+
+<p align="center">
+  <img src ="https://github.com/butroy/movie-autoencoder/blob/master/plots/p4_l2reg.png" width="300" />
+ </p>
+ 
+ Compare with the base model which give train loss of ---- and test loss --- in 50 epochs, adding l2 regularization term in the loss function doesn't optimize the model. I think this is because our model never overfit the training set and adding regularization will make the neurons away from the correct direction when computing the gradient.
+
+
 
 * More hidden layers
 
