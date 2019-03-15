@@ -104,7 +104,7 @@ with tf.Graph().as_default():
             train_loss=0
             test_loss=0
             
-            
+'''            
 fig,ax = plt.subplots()
 for key in train_loss_all.keys():
     ax.plot(np.arange(FLAGS.num_epoch),train_loss_all[key],label='hSize:' + str(key))
@@ -139,3 +139,4 @@ ax.set_ylim((0,1.4))
 ax.legend()
 plt.show()
 fig.savefig('conclusion.png',dpi=500)
+'''
